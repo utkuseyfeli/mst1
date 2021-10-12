@@ -1,0 +1,15 @@
+version: "3"
+services:
+  api-database:
+    image: mongo:latest
+    container_name: "api-database"
+    ports:
+      - 27017:27017
+  api:
+    image: api-docker-image
+    ports:
+      - 6039:6039
+    links:
+      - api-database
+    environment:
+      SPRING_DATA_MONGODB_HOST: api-database
